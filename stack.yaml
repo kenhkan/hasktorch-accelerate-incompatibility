@@ -1,47 +1,30 @@
-resolver: lts-21.7
+resolver: lts-22.21
 
 packages:
-  - .
+- .
 
 extra-deps:
-  - git: https://github.com/AccelerateHS/accelerate
-    commit: f9eb010ed267357ae0e23d7ddf98186ef2ff5034
-  - git: https://github.com/AccelerateHS/accelerate-llvm
-    commit: 2b5d69448557e89002c0179ea1aaf59bb757a6e3
-    subdirs:
-      - accelerate-llvm
-      - accelerate-llvm-ptx
-      - accelerate-llvm-native
-  - github: llvm-hs/llvm-hs
-    commit: e4b3cfa47e72f094ab109884f18acfc666b0fb7d
-    subdirs:
-      - llvm-hs
-      - llvm-hs-pure
-  - git: https://github.com/tmcdonell/cuda
-    commit: 0786f269067096838932a1312e33d4be9f2f675d
-  - git: https://github.com/tmcdonell/nvvm
-    commit: f74133eda02a06da2e86cf709d4f4f63ccbb47c9
-  - git: https://github.com/hasktorch/hasktorch
-    commit: 816334c381c56b8f5cdc1117a1dcd5a672958d58
-    subdirs:
-      - hasktorch
-      - libtorch-ffi
-      - libtorch-ffi-helper
-  - git: https://github.com/fpco/inline-c
-    commit: ef87fbae38ed9f646b912f94606d895d0582f1b4
-    subdirs:
-      - inline-c
-      - inline-c-cpp
-
-flags:
-  accelerate-llvm-ptx:
-    nvvm: true
-
-extra-include-dirs:
-- /usr/lib/llvm-15/include
-- /home/kenhkan/lib/hasktorch/deps/libtorch/include/torch/csrc/api/include
-- /home/kenhkan/lib/hasktorch/deps/libtorch/include
-
-extra-lib-dirs:
-- /usr/lib/llvm-15/lib
-- /home/kenhkan/lib/hasktorch/deps/libtorch
+- github: llvm-hs/llvm-hs
+  # llvm-15
+  commit: 5bca2c1a2a3aa98ecfb19181e7a5ebbf3e212b76
+  subdirs:
+    - llvm-hs
+    - llvm-hs-pure
+- git: https://github.com/AccelerateHS/accelerate
+  # Closest commit to accelerate-llvm in time
+  commit: f9eb010ed267357ae0e23d7ddf98186ef2ff5034
+- git: https://github.com/AccelerateHS/accelerate-llvm
+  # llvm-15 compatible
+  commit: 2b5d69448557e89002c0179ea1aaf59bb757a6e3
+  subdirs:
+    - accelerate-llvm
+    - accelerate-llvm-ptx
+    - accelerate-llvm-native
+- git: https://github.com/hasktorch/hasktorch
+  commit: a5a4252a2a60d8caa0fd1c8d1c646165947e3746
+  subdirs:
+    - hasktorch
+    - libtorch-ffi
+    - libtorch-ffi-helper
+- inline-c-cpp-0.5.0.2
+- inline-c-0.9.1.10
